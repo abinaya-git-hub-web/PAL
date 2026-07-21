@@ -25,6 +25,8 @@ const Dashboard = () => {
     }, [user.id]);
 
     const passedTopics = progress.filter(p => p.status === 'pass').length;
+    const totalTopicsCount = progress.length > 0 ? Math.max(progress.length, 10) : 10;
+    const progressPercentage = Math.min(Math.round((passedTopics / totalTopicsCount) * 100), 100);
 
     return (
         <div className="container" style={{ paddingTop: '4rem' }}>
@@ -64,7 +66,11 @@ const Dashboard = () => {
                     </div>
                     <div style={{ marginTop: '2rem' }}>
                         <div style={{ height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
-                            <div style={{ width: `${Math.min(passedTopics * 10, 100)}%`, height: '100%', background: 'var(--primary)' }}></div>
+                            <div style={{ width: `${progressPercentage}%`, height: '100%', background: 'linear-gradient(to right, var(--primary), var(--secondary))', transition: 'width 0.4s ease' }}></div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                            <span>{progressPercentage}% Completed</span>
+                            <span>{passedTopics} Passed</span>
                         </div>
                     </div>
                 </div>
