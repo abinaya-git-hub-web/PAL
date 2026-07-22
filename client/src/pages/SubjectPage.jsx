@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronRight, Lock, Unlock, CheckCircle } from 'lucide-react';
+import { ChevronDown, ChevronRight, Lock, Unlock, CheckCircle, BookOpen } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
 const SubjectPage = () => {
@@ -46,7 +46,7 @@ const SubjectPage = () => {
                         </div>
                         <AnimatePresence>
                             {expandedChapter === chapter._id && (
-                                <TopicsList chapterId={chapter._id} userProgress={userProgress} />
+                                <TopicsList chapterId={chapter._id} chapterName={chapter.chapterName} userProgress={userProgress} />
                             )}
                         </AnimatePresence>
                     </div>
@@ -56,7 +56,7 @@ const SubjectPage = () => {
     );
 };
 
-const TopicsList = ({ chapterId, userProgress }) => {
+const TopicsList = ({ chapterId, chapterName, userProgress }) => {
     const [topics, setTopics] = useState([]);
 
     useEffect(() => {
@@ -94,46 +94,66 @@ const TopicsList = ({ chapterId, userProgress }) => {
                 const passed = isTopicPassed(topic._id);
 
                 return (
-                    <Link 
+                    <div 
                         key={topic._id} 
-                        to={unlocked ? `/topic/${topic._id}` : '#'} 
-                        onClick={(e) => { if (!unlocked) e.preventDefault(); }}
                         style={{ 
-                            textDecoration: 'none', 
-                            color: 'inherit',
-                            cursor: unlocked ? 'pointer' : 'not-allowed',
+                            padding: '1rem', 
+                            borderBottom: '1px solid rgba(255,255,255,0.05)', 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            justifyContent: 'space-between',
                             opacity: unlocked ? 1 : 0.5 
                         }}
                     >
-                        <div style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <div style={{ 
-                                    width: '2rem', 
-                                    height: '2rem', 
-                                    borderRadius: '50%', 
-                                    background: passed ? 'var(--success)' : 'rgba(255,255,255,0.05)', 
-                                    color: passed ? '#fff' : 'inherit',
-                                    display: 'flex', 
-                                    alignItems: 'center', 
-                                    justifyContent: 'center', 
-                                    fontSize: '0.8rem',
-                                    fontWeight: 600
-                                }}>
-                                    {i + 1}
-                                </div>
-                                <span>{topic.topicName}</span>
+                        <Link 
+                            to={unlocked ? `/topic/${topic._id}` : '#'} 
+                            onClick={(e) => { if (!unlocked) e.preventDefault(); }}
+                            style={{ 
+                                textDecoration: 'none', 
+                                color: 'inherit',
+                                cursor: unlocked ? 'pointer' : 'not-allowed',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '1rem',
+                                flex: 1
+                            }}
+                        >
+                            <div style={{ 
+                                width: '2rem', 
+                                height: '2rem', 
+                                borderRadius: '50%', 
+                                background: passed ? 'var(--success)' : 'rgba(255,255,255,0.05)', 
+                                color: passed ? '#fff' : 'inherit',
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                justifyContent: 'center', 
+                                fontSize: '0.8rem',
+                                fontWeight: 600
+                            }}>
+                                {i + 1}
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                {passed ? (
-                                    <CheckCircle size={18} color="var(--success)" />
-                                ) : unlocked ? (
-                                    <Unlock size={18} color="var(--primary)" />
-                                ) : (
-                                    <Lock size={18} color="var(--text-muted)" />
-                                )}
-                            </div>
+                            <span>{topic.topicName}</span>
+                        </Link>
+                        
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            {unlocked && (
+                                <Link 
+                                    to={`/slides/Mathematics/${encodeURIComponent(chapterName || 'Chapter 1')}/${encodeURIComponent(topic.topicName)}`}
+                                    title="View Topic PPT Slides"
+                                    style={{ color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.85rem', textDecoration: 'none', background: 'rgba(99, 102, 241, 0.1)', padding: '0.3rem 0.6rem', borderRadius: '0.3rem' }}
+                                >
+                                    <BookOpen size={15} /> Slides
+                                </Link>
+                            )}
+                            {passed ? (
+                                <CheckCircle size={18} color="var(--success)" />
+                            ) : unlocked ? (
+                                <Unlock size={18} color="var(--primary)" />
+                            ) : (
+                                <Lock size={18} color="var(--text-muted)" />
+                            )}
                         </div>
-                    </Link>
+                    </div>
                 );
             })}
         </motion.div>
@@ -141,3 +161,4 @@ const TopicsList = ({ chapterId, userProgress }) => {
 };
 
 export default SubjectPage;
+

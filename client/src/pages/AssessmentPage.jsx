@@ -3,29 +3,38 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { motion } from 'framer-motion';
-import { HelpCircle, Award, CheckCircle2, ChevronRight, Check } from 'lucide-react';
+import { HelpCircle, Award, CheckCircle2, ChevronRight, Check, ExternalLink, FileText } from 'lucide-react';
+import assessmentMetadataData from '../data/assessmentMetadata.json';
 
 const AssessmentPage = () => {
     const { topicId } = useParams();
     const { user } = useContext(AuthContext);
     const [assessment, setAssessment] = useState(null);
+    const [topicDetails, setTopicDetails] = useState(null);
     const [answers, setAnswers] = useState({});
     const [loading, setLoading] = useState(true);
     const [hoveredOption, setHoveredOption] = useState(null); // format: "qIdx-oIdx"
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchAssessment = async () => {
+        const fetchAssessmentAndTopic = async () => {
             try {
                 const res = await axios.get(`http://localhost:5000/api/assessment/${topicId}`);
                 setAssessment(res.data);
+                
+                try {
+                    const topRes = await axios.get(`http://localhost:5000/api/topics/detail/${topicId}`);
+                    setTopicDetails(topRes.data);
+                } catch (tErr) {
+                    console.log("Topic detail fetch optional:", tErr);
+                }
             } catch (err) {
                 console.error(err);
             } finally {
                 setLoading(false);
             }
         };
-        fetchAssessment();
+        fetchAssessmentAndTopic();
     }, [topicId]);
 
     const handleOptionSelect = (qIdx, oIdx) => {
@@ -44,16 +53,16 @@ const AssessmentPage = () => {
                 alert(`Congratulations! You passed with ${res.data.score}%`);
                 navigate('/dashboard');
             } else {
-                alert(`Score: ${res.data.score}%. You need 70% to pass. Let's review the slides.`);
+                alert(`Score: ${res.data.score}%. You need 70% to pass. Let's review the remedial materials.`);
                 try {
-                    const topicDetails = await axios.get(`http://localhost:5000/api/topics/detail/${topicId}`);
-                    const subjectName = topicDetails.data?.chapterId?.subjectId?.name || 'general';
-                    const chapterName = topicDetails.data?.chapterId?.chapterName || 'chapter';
-                    const topicName = topicDetails.data?.topicName || 'topic';
+                    const topDetails = topicDetails || (await axios.get(`http://localhost:5000/api/topics/detail/${topicId}`)).data;
+                    const subjectName = topDetails?.chapterId?.subjectId?.name || 'Mathematics';
+                    const chapterName = topDetails?.chapterId?.chapterName || 'Chapter 1';
+                    const topicName = topDetails?.topicName || 'Topic';
                     navigate(`/slides/${encodeURIComponent(subjectName)}/${encodeURIComponent(chapterName)}/${encodeURIComponent(topicName)}`);
                 } catch (err) {
                     console.error("Failed to fetch topic details for redirect:", err);
-                    navigate(`/slides/general/chapter/topic`);
+                    navigate(`/slides/Mathematics/Chapter/Topic`);
                 }
             }
         } catch (err) {
@@ -75,7 +84,17 @@ const AssessmentPage = () => {
                 <div className="glass-card" style={{ textAlign: 'center', padding: '3rem' }}>
                     <HelpCircle size={60} color="var(--error)" style={{ marginBottom: '1.5rem', opacity: 0.8 }} />
                     <h3>No assessment found</h3>
-                    <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>This topic does not have an assessment configured yet.</p>
+                    <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+                        This topic does not have an assessment configured yet.
+                    </p>
+                    <a 
+                        href={assessmentMetadataData.driveAssessmentFolderUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="btn btn-primary"
+                    >
+                        <ExternalLink size={16} /> View Assessment Files on Google Drive
+                    </a>
                 </div>
             </div>
         );
@@ -94,16 +113,40 @@ const AssessmentPage = () => {
             <div className="glass-card" style={{ marginBottom: '2.5rem', padding: '1.5rem 2rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
-                        <h2 className="heading-gradient" style={{ fontSize: '2rem', marginBottom: '0.25rem' }}>Topic Assessment</h2>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Complete all questions to test your mastery.</p>
+                        <h2 className="heading-gradient" style={{ fontSize: '2rem', marginBottom: '0.25rem' }}>
+                            {topicDetails?.topicName || 'Diagnostic Topic Assessment'}
+                        </h2>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                            Complete all questions to prove topic mastery.
+                        </p>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--primary)' }}>
-                            {answeredCount} of {totalQuestions} answered
+                    
+                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                        {/* Drive Assessment Link */}
+                        <a 
+                            href={assessmentMetadataData.driveAssessmentFolderUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="btn" 
+                            style={{ 
+                                gap: '0.5rem', 
+                                background: 'rgba(99, 102, 241, 0.15)', 
+                                border: '1px solid var(--primary)', 
+                                color: '#a5b4fc',
+                                fontSize: '0.85rem'
+                            }}
+                        >
+                            <FileText size={16} /> Assessment PDF on Drive
+                        </a>
+
+                        <div style={{ textAlign: 'right' }}>
+                            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--primary)' }}>
+                                {answeredCount} of {totalQuestions} answered
+                            </div>
+                            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                                Pass score: &ge; 70%
+                            </span>
                         </div>
-                        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                            Requires &ge; 70% to pass
-                        </span>
                     </div>
                 </div>
                 
@@ -257,7 +300,7 @@ const AssessmentPage = () => {
                     }}
                 >
                     <CheckCircle2 size={22} />
-                    Submit Assessment
+                    Submit Diagnostic Assessment
                 </button>
             </motion.div>
 
@@ -266,3 +309,4 @@ const AssessmentPage = () => {
 };
 
 export default AssessmentPage;
+
