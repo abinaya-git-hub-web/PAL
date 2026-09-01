@@ -38,11 +38,12 @@ const seedData = async () => {
         // --- Math Chapter 1 ---
         const mathCh1 = new Chapter({
             subjectId: mathId,
-            chapterName: 'Chapter 1: Row Echelon Form',
+            chapterName: 'Chapter 1: Applications of Matrices and Determinants',
             order: 1
         });
         await mathCh1.save();
 
+        // Topic 1.1
         const mathTopic1_1 = new Topic({
             chapterId: mathCh1._id,
             topicName: 'Row Echelon Form',
@@ -110,6 +111,188 @@ const seedData = async () => {
             passScore: 70
         });
         await mathAss1_1.save();
+
+        // Topic 1.2: Rank of a Matrix
+        const mathTopic1_2 = new Topic({
+            chapterId: mathCh1._id,
+            topicName: 'Rank of a Matrix',
+            order: 2
+        });
+        await mathTopic1_2.save();
+
+        const mathAss1_2 = new Assessment({
+            topicId: mathTopic1_2._id,
+            questions: [
+                {
+                    questionText: 'The rank of a matrix A is defined as:',
+                    options: ['Number of rows in A', 'Number of non-zero rows in its Row Echelon Form', 'Determinant of A', 'Sum of diagonal elements'],
+                    correctAnswer: 1
+                },
+                {
+                    questionText: 'If matrix A is of order 3x4, the maximum possible rank of A is:',
+                    options: ['3', '4', '7', '12'],
+                    correctAnswer: 0
+                },
+                {
+                    questionText: 'The rank of a zero matrix is always:',
+                    options: ['1', '0', 'Undefined', '-1'],
+                    correctAnswer: 1
+                },
+                {
+                    questionText: 'If A is an n x n non-singular matrix, then rank(A) is:',
+                    options: ['0', 'n - 1', 'n', '1'],
+                    correctAnswer: 2
+                },
+                {
+                    questionText: 'Elementary row operations on a matrix:',
+                    options: ['Change its rank', 'Do not change its rank', 'Double its rank', 'Make its rank zero'],
+                    correctAnswer: 1
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss1_2.save();
+
+        // Topic 1.3: Inverse of a Non-Singular Matrix
+        const mathTopic1_3 = new Topic({
+            chapterId: mathCh1._id,
+            topicName: 'Inverse of a Non-Singular Matrix',
+            order: 3
+        });
+        await mathTopic1_3.save();
+
+        const mathAss1_3 = new Assessment({
+            topicId: mathTopic1_3._id,
+            questions: [
+                {
+                    questionText: 'A square matrix A has an inverse if and only if:',
+                    options: ['det(A) = 0', 'det(A) ≠ 0', 'A is symmetric', 'A is diagonal'],
+                    correctAnswer: 1
+                },
+                {
+                    questionText: 'The formula for finding the inverse of matrix A is:',
+                    options: ['adj(A) / det(A)', 'det(A) * adj(A)', '1 / adj(A)', 'A^T / det(A)'],
+                    correctAnswer: 0
+                },
+                {
+                    questionText: 'If A and B are invertible matrices of the same order, then (AB)^(-1) equals:',
+                    options: ['A^(-1) B^(-1)', 'B^(-1) A^(-1)', 'AB', 'BA'],
+                    correctAnswer: 1
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss1_3.save();
+
+        // Topic 1.4: Applications of Matrices - System of Linear Equations
+        const mathTopic1_4 = new Topic({
+            chapterId: mathCh1._id,
+            topicName: 'Applications of Matrices - Solving Systems',
+            order: 4
+        });
+        await mathTopic1_4.save();
+
+        const mathAss1_4 = new Assessment({
+            topicId: mathTopic1_4._id,
+            questions: [
+                {
+                    questionText: 'In Matrix Inversion Method, the system AX = B is solved by:',
+                    options: ['X = A^(-1) B', 'X = B A^(-1)', 'X = A B', 'X = adj(A) B'],
+                    correctAnswer: 0
+                },
+                {
+                    questionText: 'Cramer Rule can be applied to solve AX = B only when:',
+                    options: ['det(A) = 0', 'det(A) ≠ 0', 'A is non-square', 'B is zero vector'],
+                    correctAnswer: 1
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss1_4.save();
+
+        // Topic 1.5: Gaussian Elimination Method
+        const mathTopic1_5 = new Topic({
+            chapterId: mathCh1._id,
+            topicName: 'Gaussian Elimination Method',
+            order: 5
+        });
+        await mathTopic1_5.save();
+
+        const mathAss1_5 = new Assessment({
+            topicId: mathTopic1_5._id,
+            questions: [
+                {
+                    questionText: 'In Gaussian Elimination, the augmented matrix [A|B] is reduced to:',
+                    options: ['Identity Form', 'Row Echelon Form', 'Diagonal Form', 'Transpose Form'],
+                    correctAnswer: 1
+                },
+                {
+                    questionText: 'After reducing [A|B] to Row Echelon Form, variables are solved using:',
+                    options: ['Forward substitution', 'Back substitution', 'Matrix multiplication', 'Cramer Rule'],
+                    correctAnswer: 1
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss1_5.save();
+
+        // Topic 1.6: Consistency of Non-Homogeneous Linear Equations
+        const mathTopic1_6 = new Topic({
+            chapterId: mathCh1._id,
+            topicName: 'Consistency of Non-Homogeneous Equations',
+            order: 6
+        });
+        await mathTopic1_6.save();
+
+        const mathAss1_6 = new Assessment({
+            topicId: mathTopic1_6._id,
+            questions: [
+                {
+                    questionText: 'A system of linear equations AX = B is consistent if:',
+                    options: ['rank(A) = rank([A|B])', 'rank(A) < rank([A|B])', 'rank(A) > rank([A|B])', 'rank([A|B]) = 0'],
+                    correctAnswer: 0
+                },
+                {
+                    questionText: 'If rank(A) = rank([A|B]) = n (number of unknowns), the system has:',
+                    options: ['A unique solution', 'Infinitely many solutions', 'No solution', 'Trivial solution only'],
+                    correctAnswer: 0
+                },
+                {
+                    questionText: 'If rank(A) = rank([A|B]) < n, the system has:',
+                    options: ['A unique solution', 'Infinitely many solutions', 'No solution', 'Zero solutions'],
+                    correctAnswer: 1
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss1_6.save();
+
+        // Topic 1.7: Homogeneous Linear Equations
+        const mathTopic1_7 = new Topic({
+            chapterId: mathCh1._id,
+            topicName: 'Homogeneous Linear Equations',
+            order: 7
+        });
+        await mathTopic1_7.save();
+
+        const mathAss1_7 = new Assessment({
+            topicId: mathTopic1_7._id,
+            questions: [
+                {
+                    questionText: 'A homogeneous system AX = 0 always has at least the solution:',
+                    options: ['Trivial solution (X = 0)', 'Non-trivial solution', 'No solution', 'Undefined solution'],
+                    correctAnswer: 0
+                },
+                {
+                    questionText: 'A homogeneous system AX = 0 has a non-trivial solution if and only if:',
+                    options: ['det(A) ≠ 0', 'det(A) = 0', 'rank(A) = n', 'A is identity matrix'],
+                    correctAnswer: 1
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss1_7.save();
+
 
         // --- Math Chapter 2 ---
         const mathCh2 = new Chapter({

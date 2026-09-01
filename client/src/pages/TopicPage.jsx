@@ -53,6 +53,7 @@ const TopicPage = () => {
     const [practiceSubmitted, setPracticeSubmitted] = useState(false);
 
     useEffect(() => {
+<<<<<<< HEAD
         if (!id || !user?.id) return;
 
         const loadTopicData = async () => {
@@ -208,6 +209,31 @@ const TopicPage = () => {
                     </p>
                     <Link to="/dashboard" className="btn btn-primary" style={{ display: 'inline-flex', padding: '0.85rem 2rem' }}>
                         <ArrowLeft size={18} style={{ marginRight: '0.5rem' }} /> Return to Dashboard
+                    </Link>
+
+    const subjectName = topicDetails?.chapterId?.subjectId?.name || 'Mathematics';
+    const chapterName = topicDetails?.chapterId?.chapterName || 'Chapter 1: Applications of Matrices and Determinants';
+    const topicName = topicDetails?.topicName || 'Row Echelon Form';
+
+    return (
+        <div className="container" style={{ paddingTop: '4rem', textAlign: 'center' }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-card" style={{ maxWidth: '650px', margin: '0 auto', padding: '2.5rem' }}>
+                <HelpCircle size={48} color="var(--primary)" style={{ marginBottom: '1.5rem' }} />
+                <h2 style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>{topicName}</h2>
+                <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', lineHeight: '1.6' }}>
+                    Prove your mastery of this topic through a diagnostic test (score $\ge 70\%$ to pass and unlock the next topic), or review remedial PPT presentations and video lectures first.
+                </p>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                    <Link to={`/assessment/${id}`} className="btn btn-primary" style={{ padding: '0.85rem 1.75rem', gap: '0.5rem' }}>
+                        Start Assessment <Play size={18} fill="currentColor" />
+>>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
+                    </Link>
+                    <Link 
+                        to={`/slides/${encodeURIComponent(subjectName)}/${encodeURIComponent(chapterName)}/${encodeURIComponent(topicName)}`} 
+                        className="btn btn-secondary" 
+                        style={{ padding: '0.85rem 1.75rem', gap: '0.5rem' }}
+                    >
+                        <BookOpen size={18} /> PPT Slides & Videos <Video size={16} color="var(--secondary)" />
                     </Link>
                 </div>
             </div>
@@ -576,3 +602,5 @@ const TopicPage = () => {
 };
 
 export default TopicPage;
+
+

@@ -1,0 +1,165 @@
+{
+  "subject": "Mathematics",
+  "chapterId": "chapter_1",
+  "chapterName": "Chapter 1: Applications of Matrices and Determinants",
+  "driveFolderUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+  "topics": [
+    {
+      "id": 1,
+      "topicCode": "1.1",
+      "title": "Row Echelon Form",
+      "pptFile": "Row Echelon Form.pptx",
+      "pdfFile": "Row Echelon Form.pdf",
+      "tamilPdfFile": "Row Echelon Form_Tamil.pdf",
+      "videoFile": "Row Echelon Form.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-1/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English", "Tamil"],
+      "description": "Introduction to elementary row operations, leading entries, pivots, and transforming matrices into Row Echelon Form."
+    },
+    {
+      "id": 2,
+      "topicCode": "1.2",
+      "title": "Rank of a Matrix",
+      "pptFile": "Rank of a Matrix.pptx",
+      "pdfFile": "Rank of a Matrix.pdf",
+      "videoFile": "Rank of a Matrix.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-2/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English"],
+      "description": "Definition of matrix rank, counting non-zero rows in echelon form, and evaluating rank properties of square and rectangular matrices."
+    },
+    {
+      "id": 3,
+      "topicCode": "1.3",
+      "title": "Inverse of a Non-Singular Matrix",
+      "pptFile": "Inverse of a Non-Singular Matrix.pptx",
+      "pdfFile": "Inverse of a Non-Singular Matrix.pdf",
+      "videoFile": "Inverse of a Non-Singular Matrix.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-3/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English"],
+      "description": "Determinants, adjugate matrices, and computing inverse matrix A⁻¹ = adj(A) / det(A) for non-singular matrices."
+    },
+    {
+      "id": 4,
+      "topicCode": "1.4",
+      "title": "Applications of Matrices - Solving Systems",
+      "pptFile": "Applications of Matrices - Solving Systems.pptx",
+      "pdfFile": "Applications of Matrices - Solving Systems.pdf",
+      "videoFile": "Applications of Matrices - Solving Systems.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-4/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English"],
+      "description": "Solving linear systems of equations using Matrix Inversion Method (X = A⁻¹B) and Cramer's Rule."
+    },
+    {
+      "id": 5,
+      "topicCode": "1.5",
+      "title": "Gaussian Elimination Method",
+      "pptFile": "Gaussian Elimination Method.pptx",
+      "pdfFile": "Gaussian Elimination Method.pdf",
+      "videoFile": "Gaussian Elimination Method.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-5/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English"],
+      "description": "Applying Gaussian elimination with back-substitution to solve systems of linear equations systematically."
+    },
+    {
+      "id": 6,
+      "topicCode": "1.6",
+      "title": "Consistency of Non-Homogeneous Equations",
+      "pptFile": "Consistency of Non-Homogeneous Equations.pptx",
+      "pdfFile": "Consistency of Non-Homogeneous Equations.pdf",
+      "videoFile": "Consistency of Non-Homogeneous Equations.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-6/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English"],
+      "description": "Rouché-Capelli theorem, comparing rank(A) and rank([A|B]) to determine unique, infinitely many, or no solutions."
+    },
+    {
+      "id": 7,
+      "topicCode": "1.7",
+      "title": "Homogeneous Linear Equations",
+      "pptFile": "Homogeneous Linear Equations.pptx",
+      "pdfFile": "Homogeneous Linear Equations.pdf",
+      "videoFile": "Homogeneous Linear Equations.mp4",
+      "relativePath": "learning-materials/mathematics/chapter-1/topic-7/",
+      "driveUrl": "https://drive.google.com/drive/folders/1W54sIQzeQpm1WLAmXwBxAo2SYSmDbAIj?usp=sharing",
+      "languages": ["English"],
+      "description": "Analyzing AX = 0 systems, trivial solutions vs non-trivial solutions, and condition det(A) = 0."
+    }
+  ],
+  "supplementaryResources": [
+    {
+      "id": "supp-1",
+      "title": "Exercise 1.1 Core Concepts & Transformations",
+      "file": "Ex_1.1_Core_Concepts.pptx",
+      "type": "PPTX",
+      "description": "Comprehensive introduction slides for Row Echelon Form and elementary transformations."
+    },
+    {
+      "id": "supp-2",
+      "title": "Exercise 1.1 Quick Review Notes",
+      "file": "Ex_1.1_Review_Notes.pptx",
+      "type": "PPTX",
+      "description": "Concise summary slides for rapid topic review."
+    },
+    {
+      "id": "supp-3",
+      "title": "Exercise 1.1 Practice Set (Q11 - Q15)",
+      "file": "Ex_1.1_Practice_11_15.pptx",
+      "type": "PPTX",
+      "description": "Step-by-step worked practice problem set."
+    },
+    {
+      "id": "supp-4",
+      "title": "Exercise 1.2 Coursework & Rank Computation",
+      "file": "Ex_1.2_Coursework.pptx",
+      "type": "PPTX",
+      "description": "Main lecture presentation on rank computation algorithms."
+    },
+    {
+      "id": "supp-5",
+      "title": "Exercise 1.2 Rank Computation Review Notes",
+      "file": "Ex_1.2_Review_Notes.pptx",
+      "type": "PPTX",
+      "description": "Key formulas, shortcuts, and theorems for rank calculations."
+    },
+    {
+      "id": "supp-6",
+      "title": "Exercise 1.5 System Solving Lecture Slides",
+      "file": "Ex_1.5_Lecture_Slides.pptx",
+      "type": "PPTX",
+      "description": "Lecture walkthrough of matrix application in solving real-world systems."
+    },
+    {
+      "id": "supp-7",
+      "title": "Exercise 1.5 Complete Solutions Manual",
+      "file": "Ex_1.5_Solutions.pdf",
+      "type": "PDF",
+      "description": "Full step-by-step solution manual for Exercise 1.5."
+    },
+    {
+      "id": "supp-8",
+      "title": "Exercise 1.6 Non-Homogeneous Systems Review",
+      "file": "Ex_1.6_Review_Notes.pptx",
+      "type": "PPTX",
+      "description": "System consistency test rules and solution categorizations."
+    },
+    {
+      "id": "supp-9",
+      "title": "Exercise 1.7 Homogeneous Linear Systems Review",
+      "file": "Ex_1.7_Review_Notes.pptx",
+      "type": "PPTX",
+      "description": "Homogeneous linear systems and non-trivial solution analysis."
+    },
+    {
+      "id": "supp-10",
+      "title": "Matrix Worked Examples & Practice Bank",
+      "file": "Matrix_Examples.pptx",
+      "type": "PPTX",
+      "description": "Additional worked-out matrix examples for self-study."
+    }
+  ]
+}

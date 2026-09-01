@@ -167,6 +167,8 @@ const Dashboard = () => {
 
     const rewardValue = user?.[reward.key] || 0;
     const passedTopics = progress.filter(p => p.status === 'pass').length;
+    const totalTopicsCount = progress.length > 0 ? Math.max(progress.length, 10) : 10;
+    const progressPercentage = Math.min(Math.round((passedTopics / totalTopicsCount) * 100), 100);
 
     useEffect(() => {
         const userId = user?.id || user?._id;
@@ -455,6 +457,9 @@ const Dashboard = () => {
                                     </motion.div>
                                 </Link>
                             ))}
+                        </div>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>

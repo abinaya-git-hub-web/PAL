@@ -106,6 +106,7 @@ const AssessmentPage = () => {
 
     // ── Core state ──────────────────────────────────────────────────────────────
     const [assessment, setAssessment] = useState(null);
+    const [topicDetails, setTopicDetails] = useState(null);
     const [answers, setAnswers] = useState({});
     const [loading, setLoading] = useState(true);
     const [isGateAllowed, setIsGateAllowed] = useState(true);
@@ -147,7 +148,6 @@ const AssessmentPage = () => {
                 // 2. Fetch assessment questions
                 const res = await apiClient.get(`/api/assessment/${topicId}`);
                 setAssessment(res.data);
-
                 // 3. Resolve subjectId if not from location.state
                 const stateSubjectId = location.state?.subjectId;
                 if (!stateSubjectId) {
@@ -160,13 +160,13 @@ const AssessmentPage = () => {
                         console.warn('AssessmentPage: Could not derive subjectId', e);
                     }
                 }
-
             } catch (err) {
                 console.error('AssessmentPage: Error fetching data', err);
             } finally {
                 setLoading(false);
             }
         };
+
 
         fetchAssessmentAndGate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -246,6 +246,7 @@ const AssessmentPage = () => {
             if (res.data.user) {
                 updateUserStats(res.data.user);
                 setRewardEarned(true);
+            }
             }
 
             const bestScore = res.data.score; // backend always returns bestScore
@@ -564,6 +565,50 @@ const AssessmentPage = () => {
                     <p style={{ color: 'var(--text-muted)' }}>
                         Answer all questions. Score at least 70% to pass.
                     </p>
+=======
+    return (
+        <div className="container" style={{ paddingTop: '3rem', maxWidth: '900px', paddingBottom: '5rem' }}>
+            
+            {/* Header & Progress Indicator */}
+            <div className="glass-card" style={{ marginBottom: '2.5rem', padding: '1.5rem 2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div>
+                        <h2 className="heading-gradient" style={{ fontSize: '2rem', marginBottom: '0.25rem' }}>
+                            {topicDetails?.topicName || 'Diagnostic Topic Assessment'}
+                        </h2>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                            Complete all questions to prove topic mastery.
+                        </p>
+                    </div>
+                    
+                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                        {/* Drive Assessment Link */}
+                        <a 
+                            href={assessmentMetadataData.driveAssessmentFolderUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="btn" 
+                            style={{ 
+                                gap: '0.5rem', 
+                                background: 'rgba(99, 102, 241, 0.15)', 
+                                border: '1px solid var(--primary)', 
+                                color: '#a5b4fc',
+                                fontSize: '0.85rem'
+                            }}
+                        >
+                            <FileText size={16} /> Assessment PDF on Drive
+                        </a>
+
+                        <div style={{ textAlign: 'right' }}>
+                            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--primary)' }}>
+                                {answeredCount} of {totalQuestions} answered
+                            </div>
+                            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                                Pass score: &ge; 70%
+                            </span>
+                        </div>
+                    </div>
+>>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
                 </div>
                 <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Progress</div>
@@ -652,3 +697,4 @@ const AssessmentPage = () => {
 };
 
 export default AssessmentPage;
+
