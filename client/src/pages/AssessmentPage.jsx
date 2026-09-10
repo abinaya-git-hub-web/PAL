@@ -247,7 +247,6 @@ const AssessmentPage = () => {
                 updateUserStats(res.data.user);
                 setRewardEarned(true);
             }
-            }
 
             const bestScore = res.data.score; // backend always returns bestScore
             const band = getMasteryBand(bestScore);
@@ -554,19 +553,6 @@ const AssessmentPage = () => {
     // QUESTION SCREEN
     // ══════════════════════════════════════════════════════════════════════════
     return (
-        <div className="container" style={{ paddingTop: '5rem', maxWidth: '900px', paddingBottom: '5rem' }}>
-
-            {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <div>
-                    <h2 className="heading-gradient" style={{ fontSize: '2rem', marginBottom: '0.25rem' }}>
-                        {terminology.assessment || 'Assessment'}
-                    </h2>
-                    <p style={{ color: 'var(--text-muted)' }}>
-                        Answer all questions. Score at least 70% to pass.
-                    </p>
-=======
-    return (
         <div className="container" style={{ paddingTop: '3rem', maxWidth: '900px', paddingBottom: '5rem' }}>
             
             {/* Header & Progress Indicator */}
@@ -581,39 +567,11 @@ const AssessmentPage = () => {
                         </p>
                     </div>
                     
-                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                        {/* Drive Assessment Link */}
-                        <a 
-                            href={assessmentMetadataData.driveAssessmentFolderUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="btn" 
-                            style={{ 
-                                gap: '0.5rem', 
-                                background: 'rgba(99, 102, 241, 0.15)', 
-                                border: '1px solid var(--primary)', 
-                                color: '#a5b4fc',
-                                fontSize: '0.85rem'
-                            }}
-                        >
-                            <FileText size={16} /> Assessment PDF on Drive
-                        </a>
-
-                        <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--primary)' }}>
-                                {answeredCount} of {totalQuestions} answered
-                            </div>
-                            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                                Pass score: &ge; 70%
-                            </span>
+                    <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Progress</div>
+                        <div style={{ fontWeight: 700, color: 'var(--primary)', fontSize: '1.1rem' }}>
+                            {answeredCount} / {totalQuestions}
                         </div>
-                    </div>
->>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Progress</div>
-                    <div style={{ fontWeight: 700, color: 'var(--primary)', fontSize: '1.1rem' }}>
-                        {answeredCount} / {totalQuestions}
                     </div>
                 </div>
             </div>

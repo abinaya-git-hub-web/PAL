@@ -14,6 +14,8 @@ import SlidesPage from './pages/SlidesPage';
 import Leaderboard from './pages/Leaderboard';
 import ProfilePage from './pages/ProfilePage';
 
+import ChapterAdaptivePage from './pages/ChapterAdaptivePage';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ThemeSelectModal from './components/ThemeSelectModal';
@@ -69,6 +71,7 @@ const AppContent = () => {
             <Route path="/topic/:id" element={<ProtectedRoute><TopicPage /></ProtectedRoute>} />
             <Route path="/assessment/:topicId" element={<ProtectedRoute><AssessmentPage /></ProtectedRoute>} />
             <Route path="/slides/:subject/:chapter/:topic" element={<ProtectedRoute><SlidesPage /></ProtectedRoute>} />
+            <Route path="/chapter/:chapterId/adaptive" element={<ProtectedRoute><ChapterAdaptivePage /></ProtectedRoute>} />
           </Routes>
         </div>
         {!user && <Footer />}
@@ -77,13 +80,20 @@ const AppContent = () => {
   );
 };
 
+const AppOAuthProvider = ({ children }) => {
+  if (GOOGLE_CLIENT_ID) {
+    return <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>{children}</GoogleOAuthProvider>;
+  }
+  return <>{children}</>;
+};
+
 function App() {
   return (
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+    <AppOAuthProvider>
       <AuthProvider>
         <AppContent />
       </AuthProvider>
-    </GoogleOAuthProvider>
+    </AppOAuthProvider>
   );
 }
 

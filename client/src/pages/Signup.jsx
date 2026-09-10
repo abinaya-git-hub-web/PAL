@@ -134,9 +134,11 @@ const Signup = () => {
                             <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} useOneTap theme="filled_blue" shape="rectangular" width="350" />
-                        </div>
+                        {import.meta.env.VITE_GOOGLE_CLIENT_ID ? (
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} useOneTap theme="filled_blue" shape="rectangular" width="350" />
+                            </div>
+                        ) : null}
 
                         <p style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--text-muted)' }}>
                             Already have an account? <Link to="/login" style={{ color: 'var(--primary)' }}>Login</Link>

@@ -302,9 +302,10 @@ const seedData = async () => {
         });
         await mathCh2.save();
 
+        // Topic 2.1: Complex Fundamentals
         const mathTopic2_1 = new Topic({
             chapterId: mathCh2._id,
-            topicName: 'Basic Algebraic Properties of Complex Numbers',
+            topicName: 'Complex Numbers Fundamentals',
             order: 1
         });
         await mathTopic2_1.save();
@@ -313,59 +314,299 @@ const seedData = async () => {
             topicId: mathTopic2_1._id,
             questions: [
                 {
-                    questionText: 'Which of the following correctly states the commutative property under addition for complex numbers?',
-                    options: ['z₁ + z₂ = z₁ − z₂', 'z₁ · z₂ = z₂ + z₁', 'z₁ + z₂ = z₂ + z₁', 'z₁ + z₂ = z₁ · z₂'],
-                    correctAnswer: 2
+                    questionText: 'What is the imaginary unit i defined as?',
+                    options: ['Square root of 1', 'Square root of -1', '-1', '0'],
+                    correctAnswer: 1,
+                    explanation: 'The imaginary unit i is defined as √(-1), such that i² = -1.',
+                    conceptTag: 'Complex Fundamentals'
                 },
                 {
-                    questionText: 'Which expression correctly shows the associative property of multiplication for complex numbers?',
-                    options: ['(z₁ · z₂) + z₃ = z₁ · (z₂ + z₃)', '(z₁ · z₂) · z₃ = z₁ · (z₂ · z₃)', 'z₁ · z₂ = z₂ · z₁', 'z₁ · (z₂ + z₃) = z₁z₂ + z₁z₃'],
-                    correctAnswer: 1
+                    questionText: 'What is the value of i²?',
+                    options: ['1', '-1', 'i', '-i'],
+                    correctAnswer: 1,
+                    explanation: 'By definition of the imaginary unit i, i² = -1.',
+                    conceptTag: 'Complex Fundamentals'
                 },
                 {
-                    questionText: 'What is the additive identity for complex numbers?',
-                    options: ['1', 'i', '0 + 0i', '1 + 0i'],
-                    correctAnswer: 2
+                    questionText: 'If z = 3 + 4i, what is the real part Re(z)?',
+                    options: ['4', '3i', '3', '7'],
+                    correctAnswer: 2,
+                    explanation: 'For a complex number z = x + iy, Re(z) = x, which is 3 here.',
+                    conceptTag: 'Complex Fundamentals'
                 },
                 {
-                    questionText: 'What is the multiplicative identity for complex numbers?',
-                    options: ['0', 'i', '0 + i', '1 = 1 + 0i'],
-                    correctAnswer: 3
+                    questionText: 'If z = -2 + 5i, what is the imaginary part Im(z)?',
+                    options: ['-2', '5', '5i', '-5'],
+                    correctAnswer: 1,
+                    explanation: 'For a complex number z = x + iy, Im(z) = y, which is 5 here.',
+                    conceptTag: 'Complex Fundamentals'
                 },
                 {
-                    questionText: 'For which values of z does the multiplicative inverse z⁻¹ NOT exist?',
-                    options: ['When z is purely real', 'When z = 0', 'When z is purely imaginary', 'When z has a negative real part'],
-                    correctAnswer: 1
-                },
-                {
-                    questionText: 'If z = 3 + 4i, what is the denominator used in computing z⁻¹?',
-                    options: ['7', '12', '25', '1'],
-                    correctAnswer: 2
-                },
-                {
-                    questionText: 'Which property directly tells us that (z₁ + z₂) + z₃ = z₁ + (z₂ + z₃)?',
-                    options: ['Commutative property of addition', 'Distributive property', 'Associative property of addition', 'Additive identity'],
-                    correctAnswer: 2
-                },
-                {
-                    questionText: 'Division of z₁ by z₂ (z₂ ≠ 0) is formally written as:',
-                    options: ['z₁ − z₂', 'z₁ · z₂', 'z₁ · z₂⁻¹', 'z₁ + (−z₂)'],
-                    correctAnswer: 2
-                },
-                {
-                    questionText: 'What does the commutative property under multiplication state?',
-                    options: ['z₁ + z₂ = z₂ + z₁', 'z₁ · z₂ = z₁ + z₂', 'z₁ · z₂ = z₂ · z₁', 'z₁ · (z₂ · z₃) = (z₁ · z₂) · z₃'],
-                    correctAnswer: 2
-                },
-                {
-                    questionText: 'If z = x + iy, which expression gives z⁻¹?',
-                    options: ['x/(x²+y²) + i·y/(x²+y²)', 'x/(x²+y²) − i·y/(x²+y²)', '−x/(x²+y²) + i·y/(x²+y²)', '1/(x+y)'],
-                    correctAnswer: 1
+                    questionText: 'What is the value of i⁴?',
+                    options: ['i', '-1', '1', '-i'],
+                    correctAnswer: 2,
+                    explanation: 'i⁴ = (i²)² = (-1)² = 1.',
+                    conceptTag: 'Complex Fundamentals'
                 }
             ],
             passScore: 70
         });
         await mathAss2_1.save();
+
+        // Topic 2.2: Basic Algebraic Properties
+        const mathTopic2_2 = new Topic({
+            chapterId: mathCh2._id,
+            topicName: 'Basic Algebraic Properties of Complex Numbers',
+            order: 2
+        });
+        await mathTopic2_2.save();
+
+        const mathAss2_2 = new Assessment({
+            topicId: mathTopic2_2._id,
+            questions: [
+                {
+                    questionText: 'Which of the following correctly states the commutative property under addition for complex numbers?',
+                    options: ['z₁ + z₂ = z₁ − z₂', 'z₁ · z₂ = z₂ + z₁', 'z₁ + z₂ = z₂ + z₁', 'z₁ + z₂ = z₁ · z₂'],
+                    correctAnswer: 2,
+                    explanation: 'The commutative property under addition states that order does not matter: z₁ + z₂ = z₂ + z₁.',
+                    conceptTag: 'Algebraic Properties'
+                },
+                {
+                    questionText: 'What is the additive identity for complex numbers?',
+                    options: ['1', 'i', '0 + 0i', '1 + 0i'],
+                    correctAnswer: 2,
+                    explanation: '0 = 0 + 0i is the additive identity since z + 0 = z for any complex number z.',
+                    conceptTag: 'Algebraic Properties'
+                },
+                {
+                    questionText: 'What is the multiplicative identity for complex numbers?',
+                    options: ['0', 'i', '0 + i', '1 = 1 + 0i'],
+                    correctAnswer: 3,
+                    explanation: '1 = 1 + 0i is the multiplicative identity since z · 1 = z for any complex number z.',
+                    conceptTag: 'Algebraic Properties'
+                },
+                {
+                    questionText: 'For which value of z does the multiplicative inverse z⁻¹ NOT exist?',
+                    options: ['When z is purely real', 'When z = 0', 'When z is purely imaginary', 'When z has a negative real part'],
+                    correctAnswer: 1,
+                    explanation: 'Division by zero is undefined, so the zero complex number 0 + 0i has no multiplicative inverse.',
+                    conceptTag: 'Algebraic Properties'
+                },
+                {
+                    questionText: 'If z = 3 + 4i, what is the denominator used in computing z⁻¹?',
+                    options: ['7', '12', '25', '1'],
+                    correctAnswer: 2,
+                    explanation: 'z⁻¹ = z̄ / |z|². For z = 3 + 4i, |z|² = 3² + 4² = 25.',
+                    conceptTag: 'Algebraic Properties'
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss2_2.save();
+
+        // Topic 2.3: Conjugates and Modulus
+        const mathTopic2_3 = new Topic({
+            chapterId: mathCh2._id,
+            topicName: 'Conjugates and Modulus of Complex Numbers',
+            order: 3
+        });
+        await mathTopic2_3.save();
+
+        const mathAss2_3 = new Assessment({
+            topicId: mathTopic2_3._id,
+            questions: [
+                {
+                    questionText: 'If z = 3 + 4i, what is its complex conjugate z̄?',
+                    options: ['3 + 4i', '3 - 4i', '-3 + 4i', '-3 - 4i'],
+                    correctAnswer: 1,
+                    explanation: 'The complex conjugate of x + iy is x - iy, so 3 + 4i becomes 3 - 4i.',
+                    conceptTag: 'Conjugates & Modulus'
+                },
+                {
+                    questionText: 'What is the modulus |z| of z = 3 + 4i?',
+                    options: ['7', '5', '25', '12'],
+                    correctAnswer: 1,
+                    explanation: '|z| = √(x² + y²) = √(3² + 4²) = √25 = 5.',
+                    conceptTag: 'Conjugates & Modulus'
+                },
+                {
+                    questionText: 'What is the product z · z̄ equal to?',
+                    options: ['|z|', '|z|²', '2z', '0'],
+                    correctAnswer: 1,
+                    explanation: '(x + iy)(x - iy) = x² + y² = |z|².',
+                    conceptTag: 'Conjugates & Modulus'
+                },
+                {
+                    questionText: 'What is the complex conjugate of z̄?',
+                    options: ['z', '-z', '1/z', '|z|'],
+                    correctAnswer: 0,
+                    explanation: 'Taking the conjugate twice returns the original complex number z.',
+                    conceptTag: 'Conjugates & Modulus'
+                },
+                {
+                    questionText: 'If |z| = 1, what is z⁻¹ equal to?',
+                    options: ['z', '-z', 'z̄', '1/z̄'],
+                    correctAnswer: 2,
+                    explanation: 'Since z · z̄ = |z|² = 1, z⁻¹ = z̄ when |z| = 1.',
+                    conceptTag: 'Conjugates & Modulus'
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss2_3.save();
+
+        // Topic 2.4: Square Root of a Complex Number
+        const mathTopic2_4 = new Topic({
+            chapterId: mathCh2._id,
+            topicName: 'Square Root of a Complex Number',
+            order: 4
+        });
+        await mathTopic2_4.save();
+
+        const mathAss2_4 = new Assessment({
+            topicId: mathTopic2_4._id,
+            questions: [
+                {
+                    questionText: 'How many square roots does any non-zero complex number have?',
+                    options: ['1', '2', '3', 'Infinitely many'],
+                    correctAnswer: 1,
+                    explanation: 'Every non-zero complex number has exactly 2 distinct square roots.',
+                    conceptTag: 'Square Roots'
+                },
+                {
+                    questionText: 'What are the square roots of -9?',
+                    options: ['±3', '±3i', '3i only', '-3i only'],
+                    correctAnswer: 1,
+                    explanation: '√(-9) = √(9 · -1) = ±3i.',
+                    conceptTag: 'Square Roots'
+                },
+                {
+                    questionText: 'In the formula √(a + ib) = ±(x + iy), what determines the sign of y?',
+                    options: ['The sign of a', 'The sign of b', 'The magnitude of a', 'Always positive'],
+                    correctAnswer: 1,
+                    explanation: 'The sign of y is identical to the sign of b (the imaginary part of the radicand).',
+                    conceptTag: 'Square Roots'
+                },
+                {
+                    questionText: 'What are the square roots of i?',
+                    options: ['±(1 + i)/√2', '±(1 - i)/√2', '±(1 + i)', '±i'],
+                    correctAnswer: 0,
+                    explanation: '((1 + i)/√2)² = (1 + 2i - 1)/2 = 2i/2 = i.',
+                    conceptTag: 'Square Roots'
+                },
+                {
+                    questionText: 'If √(a + ib) = ±(x + iy), what is x² - y² equal to?',
+                    options: ['a', 'b', 'a² + b²', '√(a² + b²)'],
+                    correctAnswer: 0,
+                    explanation: 'Squaring both sides gives (x² - y²) + 2ixy = a + ib, so x² - y² = a.',
+                    conceptTag: 'Square Roots'
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss2_4.save();
+
+        // Topic 2.5: Polar Form and Euler Form
+        const mathTopic2_5 = new Topic({
+            chapterId: mathCh2._id,
+            topicName: 'Polar Form and Euler Form',
+            order: 5
+        });
+        await mathTopic2_5.save();
+
+        const mathAss2_5 = new Assessment({
+            topicId: mathTopic2_5._id,
+            questions: [
+                {
+                    questionText: 'What is the polar form of a complex number z?',
+                    options: ['r(cos θ + i sin θ)', 'r(cos θ - sin θ)', 'r cos θ + sin θ', 'cos θ + i sin θ'],
+                    correctAnswer: 0,
+                    explanation: 'The polar form is z = r(cos θ + i sin θ), where r = |z| and θ = arg(z).',
+                    conceptTag: 'Polar & Euler Form'
+                },
+                {
+                    questionText: 'In polar form z = r(cos θ + i sin θ), what does r represent?',
+                    options: ['The real part', 'The imaginary part', 'The modulus |z|', 'The argument'],
+                    correctAnswer: 2,
+                    explanation: 'r represents the modulus (distance from the origin to z), r = |z|.',
+                    conceptTag: 'Polar & Euler Form'
+                },
+                {
+                    questionText: "What is Euler's formula representation of cos θ + i sin θ?",
+                    options: ['e^(iθ)', 'e^(-iθ)', 'ln(iθ)', 'i e^θ'],
+                    correctAnswer: 0,
+                    explanation: "Euler's formula states that e^(iθ) = cos θ + i sin θ.",
+                    conceptTag: 'Polar & Euler Form'
+                },
+                {
+                    questionText: 'What is the standard range for the principal argument Arg(z)?',
+                    options: ['0 ≤ θ < 2π', '-π < θ ≤ π', '-π/2 ≤ θ ≤ π/2', '0 ≤ θ ≤ π'],
+                    correctAnswer: 1,
+                    explanation: 'The principal argument Arg(z) is defined in the interval (-π, π].',
+                    conceptTag: 'Polar & Euler Form'
+                },
+                {
+                    questionText: 'If z = 1 + i, what is its modulus r and principal argument θ?',
+                    options: ['r = √2, θ = π/4', 'r = 2, θ = π/4', 'r = √2, θ = π/2', 'r = 1, θ = π/4'],
+                    correctAnswer: 0,
+                    explanation: 'r = √(1² + 1²) = √2; tan θ = 1/1 = 1 in Q1, so θ = π/4.',
+                    conceptTag: 'Polar & Euler Form'
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss2_5.save();
+
+        // Topic 2.6: De Moivre Theorem and Applications
+        const mathTopic2_6 = new Topic({
+            chapterId: mathCh2._id,
+            topicName: 'De Moivre Theorem and Applications',
+            order: 6
+        });
+        await mathTopic2_6.save();
+
+        const mathAss2_6 = new Assessment({
+            topicId: mathTopic2_6._id,
+            questions: [
+                {
+                    questionText: "What does De Moivre's Theorem state for (cos θ + i sin θ)ⁿ when n is an integer?",
+                    options: ['cos(nθ) + i sin(nθ)', 'n cos θ + i n sin θ', 'cosⁿθ + i sinⁿθ', 'cos θ + i sin(nθ)'],
+                    correctAnswer: 0,
+                    explanation: "De Moivre's Theorem states that (cos θ + i sin θ)ⁿ = cos(nθ) + i sin(nθ).",
+                    conceptTag: 'De Moivre Theorem'
+                },
+                {
+                    questionText: 'What are the cube roots of unity?',
+                    options: ['1, -1, i', '1, ω, ω²', '1, i, -i', '0, 1, 2'],
+                    correctAnswer: 1,
+                    explanation: 'The three cube roots of unity are 1, ω = (-1 + i√3)/2, and ω² = (-1 - i√3)/2.',
+                    conceptTag: 'De Moivre Theorem'
+                },
+                {
+                    questionText: 'What is the sum of the cube roots of unity (1 + ω + ω²)?',
+                    options: ['1', '0', '-1', '3'],
+                    correctAnswer: 1,
+                    explanation: 'The sum of all n-th roots of unity is always 0, so 1 + ω + ω² = 0.',
+                    conceptTag: 'De Moivre Theorem'
+                },
+                {
+                    questionText: 'What is the product of the cube roots of unity (1 · ω · ω² = ω³)?',
+                    options: ['0', '-1', '1', 'i'],
+                    correctAnswer: 2,
+                    explanation: 'Since ω is a cube root of unity, ω³ = 1.',
+                    conceptTag: 'De Moivre Theorem'
+                },
+                {
+                    questionText: 'If n is an integer, what is (cos θ - i sin θ)ⁿ equal to?',
+                    options: ['cos(nθ) - i sin(nθ)', 'cos(nθ) + i sin(nθ)', '-cos(nθ) - i sin(nθ)', 'cosⁿθ - i sinⁿθ'],
+                    correctAnswer: 0,
+                    explanation: '(cos θ - i sin θ)ⁿ = (cos(-θ) + i sin(-θ))ⁿ = cos(-nθ) + i sin(-nθ) = cos(nθ) - i sin(nθ).',
+                    conceptTag: 'De Moivre Theorem'
+                }
+            ],
+            passScore: 70
+        });
+        await mathAss2_6.save();
 
         // --- Math Chapter 3 ---
         const mathCh3 = new Chapter({

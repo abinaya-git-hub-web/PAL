@@ -431,6 +431,59 @@ const Dashboard = () => {
 
                 {/* Analytics & Achievements & Subjects */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                    
+                    {/* Featured Class 12 Mathematics Chapter 2 Adaptive Learning Banner */}
+                    <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className="glass-card"
+                        style={{
+                            padding: '1.75rem',
+                            borderRadius: '16px',
+                            background: 'linear-gradient(135deg, rgba(37,99,235,0.12) 0%, rgba(124,58,237,0.12) 100%)',
+                            border: '1.5px solid rgba(37,99,235,0.3)',
+                            position: 'relative',
+                            overflow: 'hidden'
+                        }}
+                    >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+                            <div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+                                    <span style={{ fontSize: '0.75rem', fontWeight: 800, padding: '0.25rem 0.75rem', borderRadius: '999px', background: 'var(--primary)', color: '#fff', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                        Featured MVP • Class 12 Math
+                                    </span>
+                                    <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.25rem 0.75rem', borderRadius: '999px', background: 'rgba(16,185,129,0.15)', color: '#10b981' }}>
+                                        Adaptive Engine Active
+                                    </span>
+                                </div>
+                                <h3 style={{ fontSize: '1.6rem', margin: '0 0 0.4rem', color: 'var(--text)' }}>
+                                    Chapter 2: Complex Numbers
+                                </h3>
+                                <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', margin: 0, maxWidth: '540px', lineHeight: 1.5 }}>
+                                    Your learning path adapts dynamically based on your diagnostic assessment performance (LOW, MEDIUM, or HIGH level).
+                                </p>
+                            </div>
+
+                            <Link
+                                to="/chapter/chapter_2_complex_numbers/adaptive"
+                                className="btn btn-primary"
+                                style={{
+                                    padding: '0.85rem 1.6rem',
+                                    borderRadius: '12px',
+                                    fontWeight: 700,
+                                    fontSize: '0.95rem',
+                                    background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+                                    textDecoration: 'none',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    boxShadow: '0 6px 20px rgba(37,99,235,0.3)'
+                                }}
+                            >
+                                Launch Adaptive Learning Journey <Zap size={18} />
+                            </Link>
+                        </div>
+                    </motion.div>
+
                     <RecommendationPanel userId={user?.id || user?._id} />
                     <StudyPlanWidget userId={user?.id || user?._id} />
                     <WeakAreaPanel userId={user?.id || user?._id} />
@@ -457,9 +510,6 @@ const Dashboard = () => {
                                     </motion.div>
                                 </Link>
                             ))}
-                        </div>
-                    </div>
-                </div>
                         </div>
                     </div>
                 </div>

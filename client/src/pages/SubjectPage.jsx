@@ -180,9 +180,5 @@ const SubjectPage = () => {
     );
 };
 
-    );
-};
-
->>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
 export default SubjectPage;
 

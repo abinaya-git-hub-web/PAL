@@ -450,8 +450,45 @@ const ChapterCard = ({
                     </div>
                 )}
 
+                {/* Adaptive Learning Journey CTA Banner for Chapter 2 */}
+                {(chapter.order === 2 || chapterIndex === 1) && !isLocked && (
+                    <div style={{
+                        marginTop: '1.5rem',
+                        borderTop: '1px solid var(--card-border)',
+                        paddingTop: '1.25rem',
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                        flexWrap: 'wrap', gap: '1rem',
+                        background: 'rgba(37,99,235,0.06)',
+                        padding: '1.25rem',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(37,99,235,0.2)'
+                    }}>
+                        <div>
+                            <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 800, letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                <Sparkles size={14} /> Adaptive Learning Experience
+                            </div>
+                            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text)' }}>
+                                Trailer → Diagnostic MCQ → Level Analysis (LOW/MED/HIGH) → Adaptive Path
+                            </div>
+                        </div>
+                        <Link
+                            to={`/chapter/${chapterIdStr}/adaptive`}
+                            className="btn btn-primary"
+                            style={{
+                                borderRadius: btnRadius,
+                                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                                padding: '0.8rem 1.6rem', fontWeight: 700,
+                                background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+                                color: '#fff', textDecoration: 'none'
+                            }}
+                        >
+                            Start Adaptive Learning Flow <ChevronRight size={18} />
+                        </Link>
+                    </div>
+                )}
+
                 {/* NextAction CTA Banner */}
-                {isNextActionChapter && !isLocked && nextAction.route && (
+                {isNextActionChapter && !isLocked && nextAction.route && (chapter.order !== 2 && chapterIndex !== 1) && (
                     <div style={{
                         marginTop: '1.5rem',
                         borderTop: '1px solid var(--card-border)',

@@ -18,14 +18,9 @@ const SlidesPage = () => {
     const queryParams = new URLSearchParams(location.search);
     const topicId = location.state?.topicId || queryParams.get('topicId');
 
-    const decodedSubject = decodeURIComponent(subject || '');
-    const decodedChapter = decodeURIComponent(chapter || '');
-    const decodedTopic   = decodeURIComponent(topic || '');
-
     const decodedSubject = decodeURIComponent(subject || 'Mathematics');
     const decodedChapter = decodeURIComponent(chapter || 'Chapter 1');
-    const decodedTopic = decodeURIComponent(topic || 'Row Echelon Form');
->>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
+    const decodedTopic   = decodeURIComponent(topic || 'Row Echelon Form');
 
     // Find topic from metadata or fallback
     const matchedMetaTopic = learningMaterialsData.topics.find(
@@ -61,7 +56,6 @@ const SlidesPage = () => {
     const pptxUrl  = `/slides/${encodeURIComponent(decodedSubject)}/${encodeURIComponent(folderChapter)}/${encodeURIComponent(decodedTopic)}.pptx`;
     const tamilUrl = `/slides/${encodeURIComponent(decodedSubject)}/${encodeURIComponent(folderChapter)}/${encodeURIComponent(decodedTopic)}_Tamil.pdf`;
     const videoUrl = `/videos/${encodeURIComponent(decodedSubject)}/${encodeURIComponent(folderChapter)}/${encodeURIComponent(decodedTopic)}.mp4`;
-    const tamilUrl = `/slides/${encodeURIComponent(decodedSubject)}/${encodeURIComponent(folderChapter)}/${encodeURIComponent(topicTitle)}_Tamil.pdf`;
     const altTamilUrl = currentMetaTopic && currentMetaTopic.tamilPdfFile ? `/${currentMetaTopic.relativePath}${currentMetaTopic.tamilPdfFile}` : '';
     
     const primaryVideoUrl = `/videos/${encodeURIComponent(decodedSubject)}/${encodeURIComponent(folderChapter)}/${encodeURIComponent(topicTitle)}.mp4`;
@@ -76,7 +70,6 @@ const SlidesPage = () => {
     const [activePptxPath, setActivePptxPath] = useState(pptxUrl);
     const [activeTamilPath, setActiveTamilPath] = useState(tamilUrl);
     const [activeVideoPath, setActiveVideoPath] = useState(primaryVideoUrl);
->>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
 
     useEffect(() => {
         const checkAssets = async () => {
@@ -260,29 +253,6 @@ const SlidesPage = () => {
                         {language === 'en' ? 'Switch to Tamil Slides' : 'Switch to English Slides'}
                     </button>
                 ) : <div style={{ width: '150px' }} />}
-                        }}
-                    >
-                        <PlayCircle size={16} /> Videos Drive (15 Videos)
-                    </a>
-
-                    {/* Language Toggle */}
-                    {!selectedSuppId && hasTamil && (
-                        <button 
-                            onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')} 
-                            className="btn" 
-                            style={{ 
-                                gap: '0.5rem', 
-                                background: 'rgba(99, 102, 241, 0.15)', 
-                                border: '1px solid var(--primary)', 
-                                color: 'var(--text)' 
-                            }}
-                        >
-                            <Globe size={16} color="var(--primary)" />
-                            {language === 'en' ? 'Tamil Slides' : 'English Slides'}
-                        </button>
-                    )}
-                </div>
->>>>>>> 43dd48a2e2305bd7575031c6f6d40087fe29ec92
             </div>
 
             {/* Selection & Toolbar Bar */}
@@ -517,14 +487,12 @@ const SlidesPage = () => {
                                     <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.4' }}>
                                         Watch the lecture video for <strong>{decodedTopic}</strong> carefully before advancing to practice.
                                     </p>
+                                    <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.4', marginTop: '0.5rem' }}>
+                                        {currentVideoMeta?.description || 'Watch the video lecture to reinforce formulas and methods before re-attempting the assessment.'}
+                                    </p>
                                 </div>
-                                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.4' }}>
-                                    {currentVideoMeta?.description || 'Watch the video lecture to reinforce formulas and methods before re-attempting the assessment.'}
-                                </p>
                             </div>
-                        </div>
-                    </motion.div>
-
+                        </motion.div>
                 </div>
             )}
 

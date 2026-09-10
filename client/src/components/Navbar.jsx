@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect, useCallback, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, X, Brain, Search, User } from 'lucide-react';
+import { Menu, X, Brain, Search, User, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProfileAvatarRing from './ProfileAvatarRing';
 
@@ -72,8 +72,27 @@ const AUTH_NAV_LINKS = [
 ];
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user, login, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
     const themeCtx = useTheme ? useTheme() : null;
+
+    const handleQuickDemo = () => {
+        login({
+            token: 'demo_jwt_token_123',
+            user: {
+                id: 'demo_user_123',
+                _id: 'demo_user_123',
+                name: 'Class 12 Math Student',
+                email: 'student@example.com',
+                interest: 'professional',
+                subTheme: 'corporate',
+                points: 150,
+                streak: 5,
+                tokens: 10
+            }
+        });
+        navigate('/dashboard');
+    };
     const [activeSection, setActiveSection] = useState('home');
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -256,6 +275,27 @@ const Navbar = () => {
 
                         {!user ? (
                             <>
+                                {/* Instant Demo CTA */}
+                                <motion.button
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    onClick={handleQuickDemo}
+                                    style={{
+                                        padding: '0.6rem 1.25rem',
+                                        borderRadius: '999px',
+                                        background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+                                        color: 'white',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        fontWeight: 700,
+                                        fontSize: '0.85rem',
+                                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                                        boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)',
+                                        whiteSpace: 'nowrap'
+                                    }}
+                                >
+                                    <Zap size={14} fill="currentColor" /> Quick Demo Access
+                                </motion.button>
                                 {/* Login */}
                                 <Link
                                     to="/login"

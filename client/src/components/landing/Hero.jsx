@@ -1,11 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, Brain, Target, BarChart3, Activity, Shield, ArrowDown } from 'lucide-react';
+import { Sparkles, ArrowRight, Brain, Target, BarChart3, Activity, Shield, ArrowDown, Zap } from 'lucide-react';
 import useAnimatedCounter from '../../hooks/useAnimatedCounter';
+import { AuthContext } from '../../context/AuthContext';
 
 const Hero = () => {
     const [startAnim, setStartAnim] = useState(false);
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleQuickDemo = () => {
+        login({
+            token: 'demo_jwt_token_123',
+            user: {
+                id: 'demo_user_123',
+                _id: 'demo_user_123',
+                name: 'Class 12 Math Student',
+                email: 'student@example.com',
+                interest: 'professional',
+                subTheme: 'corporate',
+                points: 150,
+                streak: 5,
+                tokens: 10
+            }
+        });
+        navigate('/dashboard');
+    };
 
     useEffect(() => {
         setStartAnim(true);
@@ -52,12 +73,29 @@ const Hero = () => {
 
                         {/* CTA Buttons */}
                         <motion.div variants={fadeUp} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-                            <Link to="/signup" className="btn-premium" style={{ padding: '1rem 2rem', borderRadius: '9999px', background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', color: 'white', fontWeight: 700, fontSize: '1rem', boxShadow: '0 8px 25px rgba(99,102,241,0.4)', transition: 'transform 0.3s, box-shadow 0.3s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-                                Start Learning Free <ArrowRight size={18} />
+                            <button 
+                                onClick={handleQuickDemo} 
+                                className="btn-premium" 
+                                style={{ 
+                                    padding: '1rem 2rem', 
+                                    borderRadius: '9999px', 
+                                    background: 'linear-gradient(135deg, #6366f1, #a855f7)', 
+                                    color: 'white', 
+                                    fontWeight: 800, 
+                                    fontSize: '1.05rem', 
+                                    boxShadow: '0 8px 25px rgba(99,102,241,0.5)', 
+                                    border: 'none', 
+                                    cursor: 'pointer',
+                                    display: 'inline-flex', 
+                                    alignItems: 'center', 
+                                    gap: '0.5rem' 
+                                }}
+                            >
+                                <Zap size={20} fill="currentColor" /> Instant Demo Access (Dashboard)
+                            </button>
+                            <Link to="/signup" className="btn-premium-outline" style={{ padding: '1rem 2rem', borderRadius: '9999px', background: 'transparent', color: '#0f172a', fontWeight: 600, border: '2px solid #cbd5e1', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+                                Register Account <ArrowRight size={18} />
                             </Link>
-                            <a href="#features" className="btn-premium-outline" style={{ padding: '1rem 2rem', borderRadius: '9999px', background: 'transparent', color: '#0f172a', fontWeight: 600, border: '2px solid #e2e5e9', display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
-                                Explore Platform
-                            </a>
                         </motion.div>
 
                         {/* Trust Badges */}
